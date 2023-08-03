@@ -1,0 +1,57 @@
+document.getElementById('translateBtn').addEventListener('click', function() {
+    const inputText = document.getElementById('inputText').value;
+    const outputDiv = document.getElementById('output');
+    const historyDiv = document.getElementById('history');
+    let translation = '';
+
+    const runeMap = {
+        'a': 'ᚨ', 'A': 'ᚨ',
+        'b': 'ᛒ', 'B': 'ᛒ',
+        'c': 'ᚲ', 'C': 'ᚲ',
+        'd': 'ᛞ', 'D': 'ᛞ',
+        'e': 'ᛖ', 'E': 'ᛖ',
+        'f': 'ᚠ', 'F': 'ᚠ',
+        'g': 'ᚷ', 'G': 'ᚷ',
+        'h': 'ᚺ', 'H': 'ᚺ',
+        'i': 'ᛁ', 'I': 'ᛁ',
+        'j': 'ᛃ', 'J': 'ᛃ',
+        'k': 'ᚲ', 'K': 'ᚲ',
+        'l': 'ᛚ', 'L': 'ᛚ',
+        'm': 'ᛗ', 'M': 'ᛗ',
+        'n': 'ᚾ', 'N': 'ᚾ',
+        'o': 'ᛟ', 'O': 'ᛟ',
+        'p': 'ᛈ', 'P': 'ᛈ',
+        'q': 'ᛢ', 'Q': 'ᛢ',
+        'r': 'ᚱ', 'R': 'ᚱ',
+        's': 'ᛋ', 'S': 'ᛋ',
+        't': 'ᛏ', 'T': 'ᛏ',
+        'u': 'ᚢ', 'U': 'ᚢ',
+        'v': 'ᚡ', 'V': 'ᚡ',
+        'w': 'ᚹ', 'W': 'ᚹ',
+        'x': 'ᛪ', 'X': 'ᛪ',
+        'y': 'ᛃ', 'Y': 'ᛃ',
+        'z': 'ᛉ', 'Z': 'ᛉ'
+    }
+
+    let invalidCharacters = '';
+    for (let i = 0; i < inputText.length; i++) {
+        let char = inputText[i];
+        if(runeMap[char]){
+            translation += runeMap[char];
+        }else{
+            invalidCharacters += char;
+            translation += char;
+        }
+    }
+
+    outputDiv.textContent = translation;
+    if(invalidCharacters.length > 0){
+        alert('The following characters are not supported and were not translated: ' + invalidCharacters);
+    }
+    historyDiv.innerHTML += `<p>${inputText} = ${translation}</p>`;
+});
+
+document.getElementById('resetBtn').addEventListener('click', function() {
+    document.getElementById('inputText').value = '';
+    document.getElementById('output').textContent = '';
+});
